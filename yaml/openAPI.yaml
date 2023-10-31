@@ -12,4 +12,30 @@ info:
   version: 1.0.11
 externalDocs:
   description: Website kami
-  url: https://angkringakuy.github.io
+  url: https://angkringankuy.github.io
+servers:
+  - url: https://asia-southeast2-rock-prism-401900.cloudfunctions.net/
+tags:
+paths:
+/Login:
+    post:
+      tags:
+        - auth
+      summary: Login get Token
+      description: Login and Get User Token
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '405':
+          description: Invalid input
+
