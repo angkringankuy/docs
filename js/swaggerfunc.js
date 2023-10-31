@@ -1,6 +1,5 @@
 import SwaggerUIBundle from 'https://cdn.skypack.dev/swagger-ui-dist/swagger-ui-bundle.js';
-
-export let URLData = "https://raw.githubusercontent.com/angkringankuy/swagger/main/yaml/openAPI.yaml";
+export let URLData = "../yaml/openAPI.yaml";
 
 export const UIData = SwaggerUIBundle({
     url: URLData, //Location of Open API spec in the repo

@@ -22,7 +22,7 @@ tags:
       description: Deskripsi dan Kode Program
       url: https://angkringankuy.github.io/backendyak
 paths:
-/Login:
+/gcpproyek3:
     post:
       tags:
         - Auth
