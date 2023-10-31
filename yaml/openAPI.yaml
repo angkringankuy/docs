@@ -21,6 +21,11 @@ tags:
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://angkringankuy.github.io/backendyak
+  - name: User
+    description: Pengelolaan Data User
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://angkringankuy.github.io/backendyak/module
 paths:
   /Login:
     post:
@@ -41,6 +46,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
+        '405':
+          description: Invalid input
+  /RegisterUser:
+    post:
+      tags:
+        - User
+      summary: Register User Without Token
+      description: Daftar Akun User
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
         '405':
           description: Invalid input
           security:
@@ -70,23 +96,17 @@ components:
         token:
           type: string
           example: uhuy
-    requestBodies:
-    AuthReq:
-      description: Request Authentication
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Auth'
-    UserArray:
-      description: List of user object
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/AuthResponse'
-  securitySchemes:
-    token:
-      type: apiKey
-      name: token
-      in: header
+    Response:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: Berhasil Input data
+    securitySchemes:
+      token:
+        type: apiKey
+        name: token
+        in: header
