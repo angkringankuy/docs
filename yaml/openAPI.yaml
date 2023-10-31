@@ -44,6 +44,7 @@ paths:
         '405':
           description: Invalid input
 components:
+  schemas:
     Auth:
       type: object
       properties:
