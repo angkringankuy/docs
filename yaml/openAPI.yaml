@@ -43,4 +43,25 @@ paths:
                 $ref: '#/components/schemas/AuthResponse'
         '405':
           description: Invalid input
-
+components:
+    Auth:
+      type: object
+      properties:
+        username:
+          type: string
+          example: ahay
+        password:
+          type: string
+          example: ahaypasworthash
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: false
+        message:
+          type: string
+          example: Selamat Datang
+        token:
+          type: string
+          example: uhuy
