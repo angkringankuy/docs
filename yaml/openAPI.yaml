@@ -1,0 +1,15 @@
+openapi: 3.0.3
+info:
+  title: Dokumen API Cloud Function - OpenAPI 3.0
+  description: >-
+    Dokumentasi API untuk Aplikasi HR Monitor dari Cloud function 
+  termsOfService: https://github.com/angkringankuy/swagger
+  contact:
+    email: masyahida4@gmail.com
+  license:
+    name: Backendyak Package
+    url: https://pkg.go.dev/github.com/angkringankuy/backendyak
+  version: 1.0.11
+externalDocs:
+  description: Website kami
+  url: https://angkringakuy.github.io
