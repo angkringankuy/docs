@@ -1,13 +1,13 @@
 openapi: 3.0.3
 info:
-  title: Dokumen API Cloud Function - OpenAPI 3.0
+  title: Dokumen API Cloud Function GIS- OpenAPI 3.0
   description: >-
-    Dokumentasi API untuk Aplikasi HR Monitor dari Cloud function 
+    Dokumentasi API untuk Aplikasi dari Cloud function
   termsOfService: https://github.com/angkringankuy/swagger
   contact:
     email: masyahida4@gmail.com
   license:
-    name: Backendyak Package
+    name: Backend Package
     url: https://pkg.go.dev/github.com/angkringankuy/backendyak
   version: 1.0.11
 externalDocs:
@@ -16,8 +16,8 @@ externalDocs:
 servers:
   - url: https://asia-southeast2-rock-prism-401900.cloudfunctions.net
 tags:
-  - name: Auth
-    description: Auth to Access to API
+  - name: auth
+    description: Authentikasi
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://angkringankuy.github.io/backendyak
@@ -30,7 +30,7 @@ paths:
   /Login:
     post:
       tags:
-        - Auth
+        - auth
       summary: Login get Token
       description: Login and Get User Token
       operationId: authService
@@ -48,12 +48,12 @@ paths:
                 $ref: '#/components/schemas/AuthResponse'
         '405':
           description: Invalid input
-  /RegisterUser:
+  /Register:
     post:
       tags:
         - User
-      summary: Register User Without Token
-      description: Daftar Akun User
+      summary: Insert Data Geo
+      description: Update data nama by volume geo
       operationId: authService
       requestBody:
         content:
@@ -68,22 +68,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
         '405':
-          description: Invalid input
-          security:
-          token:
-            - write:apiKey
-            - read:apiKey
+          description: Invalid input          
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
 components:
   schemas:
+    Response:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: Berhasil Input data
     Auth:
       type: object
       properties:
         username:
           type: string
-          example: ahay
+          example: syahid
         password:
           type: string
-          example: ahaypasworthash
+          example: kepo
     AuthResponse:
       type: object
       properties:
@@ -95,18 +105,38 @@ components:
           example: Selamat Datang
         token:
           type: string
-          example: uhuy
-    Response:
+          example: anjasss
+    user:
       type: object
       properties:
-        status:
-          type: bool
-          example: true
-        message:
+        username:
           type: string
-          example: Berhasil Input data
-    securitySchemes:
-      token:
-        type: apiKey
-        name: token
-        in: header
+          example : syahid
+        password:
+          type: string
+          example: kepoah
+        role:
+          type: string
+          example: user
+  requestBodies:
+    AuthReq:
+      description: Request Authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Auth'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/AuthResponse'
+  securitySchemes:
+    Login:
+      type: apiKey
+      name: Login
+      in: header
+
+      
