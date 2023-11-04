@@ -52,7 +52,7 @@ paths:
     post:
       tags:
         - User
-      summary: Insert Data Geo
+      summary: Insert User
       description: Update data nama by volume geo
       operationId: authService
       requestBody:
